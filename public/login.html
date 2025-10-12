@@ -1,0 +1,35 @@
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MasterCode Login</title>
+  <!-- login.html -->
+    <meta property="og:title" content="MasterCode Login">
+    <meta property="og:description" content="Acesse o sistema da MasterCode com seu login.">
+    <meta property="og:image" content="https://master-code-nuf6vkwty-johnatanboots-projects.vercel.app/public/og-image.jpg">
+    <meta property="og:url" content="https://master-code-nuf6vkwty-johnatanboots-projects.vercel.app/login">
+
+  <link rel="stylesheet" href="/login-interface-animation.css" />
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+
+  <div class="login-container">
+    <h1 class="logo">MASTER<span>CODE</span></h1>
+    <form class="login-form" onsubmit="login(event)">
+      <input type="text" placeholder="Usuário" required />
+      <input type="password" placeholder="Senha" required />
+      <button type="submit">Entrar</button>
+    </form>
+    <p class="footer-text">© 2025 MasterCode. Todos os direitos reservados.</p>
+  </div>
+
+  <script src="/login-interface-animation.js"></script>
+  <script>
+    function login(e) {
+      e.preventDefault();
+      window.location.href = 'dashboard';
+    }
+  </script>
+</body>
+</html>
