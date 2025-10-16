@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MasterCode | Orçamentos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    :root {
+      --green-matrix: #00ff66;
+      --dark-bg: #0b0f0c;
+      --dark-card: #1a1f1b;
+      --magenta: #ff4fa3;
+      --magenta-dark: #8a005f;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+      color: #e0e0e0;
+      font-family: 'Consolas', monospace;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #0d0d0d;
+      border-bottom: 2px solid var(--green-matrix);
+      box-shadow: 0 2px 8px rgba(0, 255, 0, 0.2);
+    }
+
+    .navbar-brand { color: var(--green-matrix); font-weight: bold; letter-spacing: 1px; }
+    .navbar-brand:hover { color: var(--magenta); }
+    .nav-link { color: #e0e0e0; transition: color 0.3s; }
+    .nav-link:hover { color: var(--magenta); text-shadow: 0 0 6px rgba(255, 79, 163, 0.7); }
+    .nav-link.active { color: var(--magenta); text-shadow: 0 0 6px rgba(255, 79, 163, 0.8); }
+
+    /* Formulário de Orçamento */
+    .orcamento-section {
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .orcamento-section h2 {
+      font-size: 2rem;
+      color: var(--green-matrix);
+      text-shadow: 0 0 8px var(--green-matrix);
+      margin-bottom: 1.5rem;
+    }
+
+    .orcamento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .orcamento-card {
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--green-matrix);
+      box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .orcamento-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(255,79,163,0.4);
+      background: rgba(40,10,40,0.95);
+    }
+
+    .orcamento-card i {
+      font-size: 2.5rem;
+      color: var(--green-matrix);
+      margin-bottom: 1rem;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .orcamento-card:hover i {
+      transform: scale(1.2);
+      color: var(--magenta);
+    }
+
+    .orcamento-card h5 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .orcamento-card p {
+      font-size: 0.9rem;
+      color: #c0c0c0;
+      margin-bottom: 1rem;
+    }
+
+    .btn-magenta {
+      background-color: var(--magenta-dark);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .btn-magenta:hover {
+      background-color: var(--magenta);
+      box-shadow: 0 0 10px rgba(255, 79, 163, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Formulário */
+    .form-orcamento {
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--green-matrix);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 3rem auto;
+      box-shadow: 0 0 15px rgba(0,255,102,0.2);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .form-orcamento input,
+    .form-orcamento textarea,
+    .form-orcamento select {
+      background: #111;
+      border: 1px solid var(--green-matrix);
+      color: #e0e0e0;
+      margin-bottom: 1rem;
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 6px;
+    }
+
+    .form-orcamento button {
+      width: 100%;
+      padding: 0.8rem;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    .footer-custom {
+      background-color: #0f0f0f;
+      color: #d1d1d1;
+    }
+
+    .footer-title {
+      color: var(--green-matrix);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-link {
+      color: #d1d1d1;
+      text-decoration: none;
+    }
+    .footer-link:hover { color: var(--magenta); }
+
+    .social-link {
+      color: #d1d1d1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .social-link:hover { color: var(--magenta); }
+
+    /* Animações */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 576px) {
+      .orcamento-section h2 { font-size: 1.6rem; }
+      .form-orcamento { padding: 1.5rem; }
+    }
+
+    body {
+      background: linear-gradient(135deg, #0b0f0c 0%, #1a1f1b 100%);
+      color: #e0e0e0;
+      font-family: 'Consolas', monospace;
+    }
+
+    /* 🌐 Navbar */
+    .navbar {
+      background-color: #0d0d0d;
+      border-bottom: 2px solid #00ff00;
+      box-shadow: 0 2px 8px rgba(0, 255, 0, 0.2);
+    }
+
+    .navbar-brand {
+      color: #00ff00;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .navbar-brand:hover {
+      color: #ff4fa3;
+    }
+
+    .nav-link {
+      color: #e0e0e0;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #ff4fa3;
+      text-shadow: 0 0 6px rgba(255, 79, 163, 0.7);
+    }
+
+    .nav-link.active {
+      color: #ff4fa3;
+      text-shadow: 0 0 6px rgba(255, 79, 163, 0.8);
+    }
+
+    /* 🔎 Search */
+    .form-control {
+      background-color: #1a1a1a;
+      border: 1px solid #00ff00;
+      color: #e0e0e0;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      border-color: #00ff00;
+    }
+
+    .btn-magenta {
+      background-color: #8a005f;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .btn-magenta:hover {
+      background-color: #b3007d;
+      box-shadow: 0 0 10px rgba(179, 0, 125, 0.5);
+    }
+
+    /* 📱 Responsividade Navbar */
+    @media (max-width: 320px) {
+      .navbar-brand {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .navbar-toggler {
+        display: block;
+        margin: 0 auto;
+      }
+
+      .navbar-collapse {
+        text-align: center;
+      }
+
+      .navbar-nav .nav-link {
+        font-size: 0.95rem;
+        padding: 8px 0;
+      }
+
+      form.d-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px;
+      }
+
+      .form-control {
+        width: 90%;
+      }
+
+      .btn-magenta {
+        width: 90%;
+      }
+    }
+
+    /* 🟩 Cards */
+    .card {
+      background-color: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(6px);
+      color: #e0e0e0;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 12px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255,79,163,0.3);
+    }
+
+    .card-green {
+      border: 1px solid rgba(0, 255, 0, 0.4);
+    }
+
+    .card-magenta {
+      border: 1px solid rgba(179, 0, 125, 0.5);
+    }
+
+    .card-title.magenta {
+      color: #ff4fa3;
+      text-shadow: 0 0 5px rgba(255, 79, 163, 0.7);
+    }
+
+    /* 🦶 Footer */
+    .footer-custom {
+      background-color: #0f0f0f;
+      color: #d1d1d1;
+      margin-top: 4rem;
+    }
+
+    .footer-title {
+      color: #00ff66;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-link {
+      color: #d1d1d1;
+      text-decoration: none;
+    }
+
+    .footer-link:hover {
+      color: #ff0080;
+    }
+
+    .social-link {
+      color: #d1d1d1;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-link:hover {
+      color: #ff0080;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">MasterCode &lt;/&gt;</a>
+
+      <button class="navbar-toggler text-success border-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="perfil.html">Perfil</a></li>
+          <li class="nav-item"><a class="nav-link" href="servicos.html">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="orcamentos.html">Orçamentos</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="cursos.html" data-bs-toggle="dropdown">Cursos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="cursos.html">Curso 1</a></li>
+              <li><a class="dropdown-item" href="cursos.html">Curso 2</a></li>
+              <li><a class="dropdown-item" href="cursos.html">Curso 3</a></li>
+              <li><a class="dropdown-item" href="cursos.html">Curso 4</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Cadastro</a></li>
+        </ul>
+
+        <!-- Formulário de busca -->
+        <form class="d-flex ms-lg-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Pesquisar...">
+          <button class="btn-magenta" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ✅ Cards de Tipos de Orçamento -->
+  <section class="orcamento-section">
+    <h2>Escolha o tipo de orçamento</h2>
+    <div class="orcamento-grid">
+      <div class="orcamento-card">
+        <i class="bi bi-laptop"></i>
+        <h5>Web Site</h5>
+        <p>Solicite um orçamento para desenvolvimento de sites profissionais.</p>
+        <button class="btn-magenta">Solicitar</button>
+      </div>
+      <div class="orcamento-card">
+        <i class="bi bi-phone"></i>
+        <h5>App Mobile</h5>
+        <p>Receba uma proposta personalizada para o seu aplicativo.</p>
+        <button class="btn-magenta">Solicitar</button>
+      </div>
+      <div class="orcamento-card">
+        <i class="bi bi-gear"></i>
+        <h5>Automação</h5>
+        <p>Melhore processos internos e reduza custos com soluções inteligentes.</p>
+        <button class="btn-magenta">Solicitar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Formulário de Orçamento -->
+  <section>
+    <form class="form-orcamento">
+      <h3 style="color: var(--green-matrix); text-align: center; margin-bottom: 1rem;">Preencha para receber seu orçamento</h3>
+      <input type="text" placeholder="Nome completo" required>
+      <input type="email" placeholder="E-mail" required>
+      <input type="tel" placeholder="Telefone / WhatsApp" required>
+      <select required>
+        <option value="">Selecione o tipo de serviço</option>
+        <option>Desenvolvimento Web</option>
+        <option>App Mobile</option>
+        <option>Automação</option>
+        <option>Design UI/UX</option>
+      </select>
+      <textarea rows="4" placeholder="Descreva seu projeto"></textarea>
+      <button type="submit" class="btn-magenta">Enviar Orçamento</button>
+    </form>
+  </section>
+
+  <!-- ✅ Footer -->
+  <footer class="footer-custom mt-5 py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h6 class="footer-title">MasterCode</h6>
+          <p>Transformando ideias em soluções digitais inovadoras.</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h6 class="footer-title">Links Rápidos</h6>
+          <ul class="list-unstyled">
+            <li><a class="footer-link" href="#">Home</a></li>
+            <li><a class="footer-link" href="#">Serviços</a></li>
+            <li><a class="footer-link" href="#">Orçamentos</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h6 class="footer-title">Redes Sociais</h6>
+          <a href="#" class="social-link"><i class="bi bi-facebook"></i> Facebook</a><br>
+          <a href="#" class="social-link"><i class="bi bi-instagram"></i> Instagram</a><br>
+          <a href="#" class="social-link"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <small>&copy; 2025 MasterCode. Todos os direitos reservados.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

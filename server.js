@@ -34,6 +34,24 @@ app.get('/login', (req, res) => {
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });
+app.get('/perfil', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'perfil.html'));
+});
+app.get('/servicos', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'servicos.html'));
+});
+app.get('/orcamentos', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'orcamentos.html'));
+});
+app.get('/cursos', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cursos.html'));
+});
+app.get('/inscri-cursos', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'inscri-cursos.html'));
+});
+app.get('/area-aluno', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'area-aluno.html'));
+});
 
 
 /*Rodando o servidor
