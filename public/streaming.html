@@ -3,11 +3,147 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MasterCode | Área do Aluno</title>
+  <title>MasterCode | Streaming de Curso</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
   <style>
+    :root {
+      --green-matrix: #00ff66;
+      --dark-bg: #0b0f0c;
+      --dark-card: #1a1f1b;
+      --magenta: #ff4fa3;
+      --magenta-dark: #8a005f;
+    }
+
     body {
+      background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+      color: #e0e0e0;
+      font-family: 'Consolas', monospace;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #0d0d0d;
+      border-bottom: 2px solid var(--green-matrix);
+    }
+    .navbar-brand { color: var(--green-matrix) !important; font-weight: bold; }
+    .nav-link { color: #e0e0e0; }
+    .nav-link:hover { color: var(--magenta); }
+
+    /* Layout Principal */
+    .streaming-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    /* Player */
+    .video-player {
+      background: black;
+      border: 2px solid var(--green-matrix);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+      animation: fadeIn 0.8s ease forwards;
+    }
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Conteúdo da Aula */
+    .lesson-content {
+      margin-top: 1.5rem;
+      background: rgba(26,26,26,0.85);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--green-matrix);
+      box-shadow: 0 0 10px rgba(0,255,102,0.2);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .lesson-content h2 {
+      color: var(--green-matrix);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Lista de Aulas */
+    .lesson-list {
+      background: rgba(26,26,26,0.85);
+      border: 1px solid var(--green-matrix);
+      border-radius: 10px;
+      padding: 1rem;
+      max-height: 80vh;
+      overflow-y: auto;
+      animation: fadeInRight 0.8s ease forwards;
+    }
+    .lesson-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 0.4rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .lesson-item:hover {
+      background: rgba(0,255,102,0.1);
+    }
+    .lesson-item.active {
+      background: rgba(0,255,102,0.2);
+      border-left: 3px solid var(--green-matrix);
+    }
+    .lesson-item .title {
+      font-size: 0.95rem;
+      flex: 1;
+      margin-right: 0.5rem;
+    }
+    .lesson-item .status i {
+      color: var(--green-matrix);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .streaming-container {
+        grid-template-columns: 1fr;
+      }
+      .lesson-list {
+        max-height: 400px;
+        margin-top: 1rem;
+      }
+    }
+
+    /* Animações */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(15px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Footer */
+    .footer-custom {
+      background-color: #0f0f0f;
+      color: #d1d1d1;
+      margin-top: 3rem;
+      text-align: center;
+      padding: 1rem 0;
+      border-top: 1px solid #222;
+    }
+     body {
       background: linear-gradient(135deg, #0b0f0c 0%, #1a1f1b 100%);
       color: #e0e0e0;
       font-family: 'Consolas', monospace;
@@ -248,8 +384,8 @@
 </head>
 <body>
 
-  <!-- ✅ Navbar -->
-  <nav class="navbar navbar-expand-lg">
+  <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">MasterCode &lt;/&gt;</a>
 
@@ -285,66 +421,79 @@
     </div>
   </nav>
 
-  <!-- ✅ Lista de Cursos -->
-  <div class="container my-5">
-    <div class="row g-4">
-
-      <!-- Curso 1 -->
-      <div class="col-md-4">
-        <div class="course-card">
-          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80" alt="Curso Web">
-          <div>
-            <h5 class="course-title">Desenvolvimento Web</h5>
-            <p class="course-desc">Aprenda HTML, CSS, JS e frameworks modernos para criar sites incríveis.</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 45%"></div>
-            </div>
-          </div>
-          <button class="btn-access" onclick="acessarCurso('web')">Acessar Curso</button>
-        </div>
+  <!-- Conteúdo -->
+  <div class="streaming-container">
+    <!-- Coluna Esquerda -->
+    <div>
+      <div class="video-player">
+        <video id="courseVideo" controls>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+          Seu navegador não suporta o elemento de vídeo.
+        </video>
       </div>
 
-      <!-- Curso 2 -->
-      <div class="col-md-4">
-        <div class="course-card">
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" alt="Curso Mobile">
-          <div>
-            <h5 class="course-title">Desenvolvimento Mobile</h5>
-            <p class="course-desc">Crie aplicativos iOS e Android com interfaces modernas e responsivas.</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 70%"></div>
-            </div>
-          </div>
-          <button class="btn-access" onclick="acessarCurso('mobile')">Acessar Curso</button>
-        </div>
+      <div class="lesson-content">
+        <h2 id="lessonTitle">Introdução ao Curso</h2>
+        <p id="lessonDescription">
+          Bem-vindo à primeira aula! Aqui você terá uma visão geral do conteúdo que será abordado ao longo deste curso.
+          Este espaço também pode conter textos, links e materiais de apoio da aula atual 📚
+        </p>
       </div>
+    </div>
 
-      <!-- Curso 3 -->
-      <div class="col-md-4">
-        <div class="course-card">
-          <img src="https://images.unsplash.com/photo-1556761175-129418cb2dfe?auto=format&fit=crop&w=800&q=80" alt="Curso Dados">
-          <div>
-            <h5 class="course-title">Análise de Dados</h5>
-            <p class="course-desc">Aprenda a transformar dados em informações estratégicas.</p>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 20%"></div>
-            </div>
-          </div>
-          <button class="btn-access" onclick="acessarCurso('dados')">Acessar Curso</button>
-        </div>
-      </div>
-
+    <!-- Coluna Direita -->
+    <div class="lesson-list" id="lessonList">
+      <!-- Gerado dinamicamente -->
     </div>
   </div>
 
-  <!-- ✅ Script Redirecionamento -->
+  <footer class="footer-custom">
+    <small>&copy; 2025 MasterCode. Todos os direitos reservados.</small>
+  </footer>
+
   <script>
-    function acessarCurso(curso) {
-      window.location.href = `streaming.html?curso=${curso}`;
+    // Lista simulada de aulas (poderia vir do backend)
+    const lessons = [
+      { id: 1, title: "Introdução ao Curso", description: "Visão geral do curso e objetivos.", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+      { id: 2, title: "Configuração do Ambiente", description: "Como configurar VSCode e extensões úteis.", video: "https://www.w3schools.com/html/movie.mp4" },
+      { id: 3, title: "Primeiro Projeto", description: "Vamos criar juntos nossa primeira aplicação!", video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+      { id: 4, title: "Desafio Prático", description: "Hora de aplicar seus conhecimentos em um mini projeto.", video: "https://www.w3schools.com/html/movie.mp4" },
+    ];
+
+    const lessonList = document.getElementById('lessonList');
+    const courseVideo = document.getElementById('courseVideo');
+    const lessonTitle = document.getElementById('lessonTitle');
+    const lessonDescription = document.getElementById('lessonDescription');
+
+    function loadLessons() {
+      lessonList.innerHTML = '';
+      lessons.forEach((lesson, index) => {
+        const div = document.createElement('div');
+        div.classList.add('lesson-item');
+        if (index === 0) div.classList.add('active');
+        div.innerHTML = `
+          <div class="title">${lesson.title}</div>
+          <div class="status"><i class="bi bi-play-circle"></i></div>
+        `;
+        div.addEventListener('click', () => selectLesson(index));
+        lessonList.appendChild(div);
+      });
     }
+
+    function selectLesson(index) {
+      document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('active'));
+      const selected = lessonList.children[index];
+      selected.classList.add('active');
+
+      const lesson = lessons[index];
+      lessonTitle.textContent = lesson.title;
+      lessonDescription.textContent = lesson.description;
+      courseVideo.src = lesson.video;
+      courseVideo.play();
+    }
+
+    loadLessons();
   </script>
 
-  <!-- Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
