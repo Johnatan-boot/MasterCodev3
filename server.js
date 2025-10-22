@@ -25,8 +25,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 /*Olha Express, quando alguém realizar uma requisição do tipo get para a raiz (informando apenas 
 a porta), pegue a resposta (res) e envie (send) uma tag h1 com o conteúdo “Servidor rodando com ExpressJS”.*/
 // Rota principal
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
+app.get('/cadastro', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'cadastro.html'));
 });
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
@@ -51,6 +54,9 @@ app.get('/inscri-cursos', (req, res) => {
 });
 app.get('/area-aluno', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'area-aluno.html'));
+});
+app.get('/detalhes-curso', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'detalhes-curso.html'));
 });
 
 

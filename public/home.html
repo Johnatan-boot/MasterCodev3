@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MasterCode - Home</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0b0b0b;
+    color: #e0e0e0;
+}
+
+/* 🌐 Navbar */
+    .navbar {
+      background-color: #0d0d0d;
+      border-bottom: 2px solid #00ff00;
+      box-shadow: 0 2px 8px rgba(0, 255, 0, 0.2);
+    }
+
+    .navbar-brand {
+      color: #00ff00;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .navbar-brand:hover {
+      color: #ff4fa3;
+    }
+
+    .nav-link {
+      color: #e0e0e0;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #ff4fa3;
+      text-shadow: 0 0 6px rgba(255, 79, 163, 0.7);
+    }
+
+    .nav-link.active {
+      color: #ff4fa3;
+      text-shadow: 0 0 6px rgba(255, 79, 163, 0.8);
+    }
+
+    /* 🔎 Search */
+    .form-control {
+      background-color: #1a1a1a;
+      border: 1px solid #00ff00;
+      color: #e0e0e0;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+      border-color: #00ff00;
+    }
+
+    .btn-magenta {
+      background-color: #8a005f;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .btn-magenta:hover {
+      background-color: #b3007d;
+      box-shadow: 0 0 10px rgba(179, 0, 125, 0.5);
+    }
+
+    /* 📱 Responsividade Navbar */
+    @media (max-width: 320px) {
+      .navbar-brand {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .navbar-toggler {
+        display: block;
+        margin: 0 auto;
+      }
+
+      .navbar-collapse {
+        text-align: center;
+      }
+
+      .navbar-nav .nav-link {
+        font-size: 0.95rem;
+        padding: 8px 0;
+      }
+
+      form.d-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px;
+      }
+
+      .form-control {
+        width: 90%;
+      }
+
+      .btn-magenta {
+        width: 90%;
+      }
+    }
+
+
+/* Carrossel */
+.carousel-item img {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+}
+
+/* Grid principal */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1.2fr;
+    gap: 20px;
+    padding: 20px;
+}
+@media(max-width: 992px){
+    .main-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media(max-width: 768px){
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ScrollSpy */
+.scrollspy-example {
+    height: 500px;
+    overflow-y: auto;
+    background-color: #111;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.scrollspy-example h6 {
+    margin-top: 1rem;
+    color: #00ff7f;
+}
+
+/* Vídeos */
+.video-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.video-container iframe {
+    border-radius: 10px;
+}
+
+/* Cards */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.card {
+    background-color: #1c1c1c;
+    border: none;
+    border-radius: 10px;
+    color: #e0e0e0;
+    transition: 0.3s;
+}
+.card:hover {
+    transform: scale(1.03);
+    background-color: #222;
+}
+.card-title {
+    color: #00ff7f;
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    color: #777;
+}
+
+/* Grid principal */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1.2fr;
+    gap: 20px;
+    padding: 20px;
+    align-items: stretch; /* Faz todas as colunas terem altura igual */
+}
+
+/* ScrollSpy */
+.scrollspy-example {
+    height: 100%;
+    overflow-y: auto;
+    background-color: #111;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+/* Vídeos e Cards */
+.video-container, .card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%; /* Preenche a altura da coluna */
+}
+
+.video-container .ratio, .card-container .card {
+    flex: 1; /* Faz os elementos internos ocuparem espaço igual */
+}
+
+/* Ajustes para responsividade */
+@media(max-width: 992px){
+    .main-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media(max-width: 768px){
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#scrollspy-example" tabindex="0">
+
+ <!-- ✅ Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">MasterCode &lt;/&gt;</a>
+
+      <button class="navbar-toggler text-success border-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="perfil.html">Perfil</a></li>
+          <li class="nav-item"><a class="nav-link" href="servicos.html">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="orcamentos.html">Orçamentos</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="cursos.html" data-bs-toggle="dropdown">Cursos</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Curso 1</a></li>
+              <li><a class="dropdown-item" href="#">Curso 2</a></li>
+              <li><a class="dropdown-item" href="#">Curso 3</a></li>
+              <li><a class="dropdown-item" href="#">Curso 4</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Cadastro</a></li>
+        </ul>
+
+        <!-- Formulário de busca -->
+        <form class="d-flex ms-lg-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Pesquisar...">
+          <button class="btn-magenta" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+<!-- Carrossel -->
+<div id="carouselExample" class="carousel slide mt-3" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://tse1.mm.bing.net/th/id/OIP.k6nlxGbv6DKeo7C-F9vczwHaEK?pid=Api&P=0&h=180" class="d-block w-100" alt="Tech">
+    </div>
+    <div class="carousel-item">
+      <img src="https://sp.yimg.com/ib/th/id/OIP.PzCvzN3m4WH-uoAObpIKLgHaE7?pid=Api&w=148&h=148&c=7&rs=1https://up.yimg.com/ib/th/id/OIP.c4Dkp1KBVO4_Tle4Ub2n6gHaE8?pid=Api&rs=1&c=1&qlt=95&w=166&h=110" class="d-block w-100" alt="Programming">
+    </div>
+    <div class="carousel-item">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.O6cW9kUD0equlx02DntG7QHaEJ?pid=Api&P=0&h=180" class="d-block w-100" alt="AI">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Conteúdo principal -->
+<section class="main-grid mt-4">
+
+  <!-- ScrollSpy -->
+  <div>
+    <h4>📰 Notícias</h4>
+    <div id="scrollspy-example" class="scrollspy-example">
+      <h6 id="scrollspyHeading1">Linguagens em alta</h6>
+      <p>JavaScript, Python e Go continuam dominando o mercado.</p>
+      <h6 id="scrollspyHeading2">Tendência</h6>
+      <p>Low-code e automação estão revolucionando o setor.</p>
+      <h6 id="scrollspyHeading3">Comunidade</h6>
+      <p>Eventos e hackathons estão de volta em 2025!</p>
+      <h6 id="scrollspyHeading4">Cursos Novos</h6>
+      <p>Confira os lançamentos de cursos de IA, Blockchain e Cybersecurity.</p>
+    </div>
+  </div>
+
+  <!-- Vídeos -->
+  <div class="video-container">
+    <h4>🎥 Vídeos</h4>
+    <div class="ratio ratio-16x9">
+      <iframe src="https://www.youtube.com/embed/m8e-FF8MsqU" allowfullscreen></iframe>
+    </div>
+    <div class="ratio ratio-16x9">
+      <iframe src="https://www.youtube.com/embed/2ePf9rue1Ao" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="card-container">
+    <h4>🚀 Novidades e Cursos</h4>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Curso de IA Generativa</h5>
+        <p>Aprenda a criar projetos com inteligência artificial usando as tecnologias mais recentes.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Novas Tecnologias 2025</h5>
+        <p>Descubra o que há de novo no mundo do desenvolvimento e automação.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Serviços MasterCode</h5>
+        <p>Oferecemos consultoria, desenvolvimento web e soluções inovadoras em TI.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+    <p>© 2025 MasterCode | Desenvolvido com 💻 e ☕</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

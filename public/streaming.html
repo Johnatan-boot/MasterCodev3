@@ -494,6 +494,20 @@
 
     loadLessons();
   </script>
+  <script>
+  // Recupera o curso selecionado
+  const selectedCourse = JSON.parse(localStorage.getItem('selectedCourse'));
+
+  if (selectedCourse) {
+    document.title = `MasterCode | ${selectedCourse.title}`;
+    document.getElementById('lessonTitle').textContent = `📚 ${selectedCourse.title}`;
+    document.getElementById('lessonDescription').textContent = selectedCourse.desc;
+  } else {
+    // Se não houver curso selecionado, redireciona de volta
+    window.location.href = 'area-aluno.html';
+  }
+</script>
+
 
 </body>
 </html>

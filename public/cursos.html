@@ -498,51 +498,56 @@
     </div>
   </section>
 
-  <!-- 📚 Cards -->
-  <div class="container my-5">
-    <div class="row g-4" id="courseList">
-      <div class="col-md-4">
-        <div class="course-card" data-title="HTML & CSS">
-          <i class="bi bi-code-slash"></i>
-          <h5 class="course-title">HTML & CSS Moderno</h5>
-          <p class="course-desc">Aprenda a construir páginas incríveis com HTML5 e CSS3 responsivo.</p>
-          <a href="#" class="btn btn-magenta mt-2">Ver Curso</a>
-        </div>
+<!-- 📚 Cards -->
+<div class="container my-5">
+  <div class="row g-4" id="courseList">
+    <div class="col-md-4">
+      <div class="course-card" data-title="HTML & CSS Moderno">
+        <i class="bi bi-code-slash"></i>
+        <h5 class="course-title">HTML & CSS Moderno</h5>
+        <p class="course-desc">Aprenda a construir páginas incríveis com HTML5 e CSS3 responsivo.</p>
+        <a href="#" class="btn btn-magenta mt-2" onclick="verDetalhes('HTML & CSS Moderno')">Ver Curso</a>
       </div>
-      <div class="col-md-4">
-        <div class="course-card" data-title="JavaScript">
-          <i class="bi bi-braces"></i>
-          <h5 class="course-title">JavaScript Essencial</h5>
-          <p class="course-desc">Domine a linguagem que move a web com projetos práticos.</p>
-          <a href="#" class="btn btn-magenta mt-2">Ver Curso</a>
-        </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="course-card" data-title="JavaScript Essencial">
+        <i class="bi bi-braces"></i>
+        <h5 class="course-title">JavaScript Essencial</h5>
+        <p class="course-desc">Domine a linguagem que move a web com projetos práticos.</p>
+        <a href="#" class="btn btn-magenta mt-2" onclick="verDetalhes('JavaScript Essencial')">Ver Curso</a>
       </div>
-      <div class="col-md-4">
-        <div class="course-card" data-title="React">
-          <i class="bi bi-lightning"></i>
-          <h5 class="course-title">React Avançado</h5>
-          <p class="course-desc">Construa interfaces poderosas com os conceitos mais modernos do React.</p>
-          <a href="#" class="btn btn-magenta mt-2">Ver Curso</a>
-        </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="course-card" data-title="React Avançado">
+        <i class="bi bi-lightning"></i>
+        <h5 class="course-title">React Avançado</h5>
+        <p class="course-desc">Construa interfaces poderosas com os conceitos mais modernos do React.</p>
+        <a href="#" class="btn btn-magenta mt-2" onclick="verDetalhes('React Avançado')">Ver Curso</a>
       </div>
-      <div class="col-md-4">
-        <div class="course-card" data-title="Python">
-          <i class="bi bi-terminal"></i>
-          <h5 class="course-title">Python para Iniciantes</h5>
-          <p class="course-desc">Comece sua jornada na programação com uma linguagem simples e poderosa.</p>
-          <a href="#" class="btn btn-magenta mt-2">Ver Curso</a>
-        </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="course-card" data-title="Python para Iniciantes">
+        <i class="bi bi-terminal"></i>
+        <h5 class="course-title">Python para Iniciantes</h5>
+        <p class="course-desc">Comece sua jornada na programação com uma linguagem simples e poderosa.</p>
+        <a href="#" class="btn btn-magenta mt-2" onclick="verDetalhes('Python para Iniciantes')">Ver Curso</a>
       </div>
-      <div class="col-md-4">
-        <div class="course-card" data-title="Cibersegurança">
-          <i class="bi bi-shield-lock"></i>
-          <h5 class="course-title">Cibersegurança</h5>
-          <p class="course-desc">Aprenda a proteger sistemas e redes de ataques reais.</p>
-          <a href="#" class="btn btn-magenta mt-2">Ver Curso</a>
-        </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="course-card" data-title="Cibersegurança">
+        <i class="bi bi-shield-lock"></i>
+        <h5 class="course-title">Cibersegurança</h5>
+        <p class="course-desc">Aprenda a proteger sistemas e redes de ataques reais.</p>
+        <a href="#" class="btn btn-magenta mt-2" onclick="verDetalhes('Cibersegurança')">Ver Curso</a>
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- ✅ Footer -->
   <footer class="footer-custom mt-5 py-4">
@@ -587,5 +592,51 @@
       });
     }
   </script>
+  <script>
+  function verDetalhes(curso) {
+    const cursos = {
+      "HTML & CSS Moderno": {
+        titulo: "HTML & CSS Moderno",
+        descricao: "Aprenda a construir páginas incríveis e responsivas com HTML5 e CSS3, dominando Flexbox, Grid e boas práticas de UI/UX.",
+        duracao: "40 horas",
+        grade: ["Introdução à Web", "HTML5 Avançado", "CSS3 e Responsividade", "Projeto Final"],
+        preco: "R$ 199,90"
+      },
+      "JavaScript Essencial": {
+        titulo: "JavaScript Essencial",
+        descricao: "Domine a linguagem que move a web. Entenda lógica, manipulação de DOM, eventos e APIs modernas.",
+        duracao: "50 horas",
+        grade: ["Sintaxe e Variáveis", "Funções e Objetos", "DOM e Eventos", "APIs e Fetch"],
+        preco: "R$ 249,90"
+      },
+      "React Avançado": {
+        titulo: "React Avançado",
+        descricao: "Aprenda React de forma prática com Hooks, Context API e integração com back-end.",
+        duracao: "60 horas",
+        grade: ["Componentes e JSX", "Hooks Avançados", "Rotas e Estado Global", "Deploy e Performance"],
+        preco: "R$ 299,90"
+      },
+      "Python para Iniciantes": {
+        titulo: "Python para Iniciantes",
+        descricao: "Descubra o poder do Python e crie programas desde o básico até automações incríveis.",
+        duracao: "45 horas",
+        grade: ["Introdução ao Python", "Estruturas de Controle", "Manipulação de Arquivos", "Automação e Projetos"],
+        preco: "R$ 189,90"
+      },
+      "Cibersegurança": {
+        titulo: "Cibersegurança",
+        descricao: "Aprenda a proteger sistemas, entender vulnerabilidades e realizar testes de penetração éticos.",
+        duracao: "70 horas",
+        grade: ["Fundamentos de Segurança", "Criptografia", "Testes de Penetração", "Monitoramento e Defesa"],
+        preco: "R$ 349,90"
+      }
+    };
+
+    // Salva os dados no localStorage e redireciona
+    localStorage.setItem("cursoSelecionado", JSON.stringify(cursos[curso]));
+    window.location.href = "detalhes-curso.html";
+  }
+</script>
+
 </body>
 </html>

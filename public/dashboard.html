@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mastercode | Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 
   <style>
     /* 🌌 Fundo geral estilo hacker */
@@ -214,7 +216,40 @@
     align-items: flex-start;
   }
 }
+     /* 🦶 Footer */
+    .footer-custom {
+      background-color: #0f0f0f;
+      color: #d1d1d1;
+      margin-top: 4rem;
+    }
 
+    .footer-title {
+      color: #00ff66;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-link {
+      color: #d1d1d1;
+      text-decoration: none;
+    }
+
+    .footer-link:hover {
+      color: #ff0080;
+    }
+
+    .social-link {
+      color: #d1d1d1;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-link:hover {
+      color: #ff0080;
+    }
 
   </style>
 </head>
@@ -319,56 +354,43 @@
       </div>
     </div>
   </div>
- <footer class="footer-custom text-center text-lg-start mt-5">
-  <div class="container py-5">
-    <div class="row gy-4">
-      
-      <!-- Coluna 1 -->
-      <div class="col-lg-4 col-md-6">
-        <h5 class="footer-title">💻 Mastercode &lt; / &gt;</h5>
-        <p>
-          Projeto com tema hacker moderno, design responsivo e gráficos interativos.
-        </p>
-      </div>
-
-      <!-- Coluna 2 -->
-      <div class="col-lg-4 col-md-6">
-        <h5 class="footer-title">Links Úteis</h5>
-        <ul class="list-unstyled d-flex flex-column gap-2">
-          <li><a href="#" class="footer-link">Home</a></li>
-          <li><a href="#" class="footer-link">Perfil</a></li>
-          <li><a href="#" class="footer-link">Serviços</a></li>
-          <li><a href="#" class="footer-link">Orçamentos</a></li>
-          <li><a href="#" class="footer-link">Cursos</a></li>
-          <li><a href="#" class="footer-link">Contato</a></li>
-        </ul>
-      </div>
-
-      <!-- Coluna 3 -->
-      <div class="col-lg-4 col-md-12">
-        <h5 class="footer-title">Redes Sociais</h5>
-        <div class="d-flex flex-column align-items-center align-items-lg-start gap-2">
+ <!-- ✅ Footer -->
+  <footer class="footer-custom text-center text-lg-start">
+    <div class="container py-5">
+      <div class="row gy-4">
+        <div class="col-lg-4">
+          <h5 class="footer-title">💻 Mastercode &lt;/&gt;</h5>
+          <p>Projeto com tema hacker moderno, design responsivo e interativo.</p>
+        </div>
+        <div class="col-lg-4">
+          <h5 class="footer-title">Links Úteis</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="perfil.html" class="footer-link">Perfil</a></li>
+            <li><a href="servicos.html" class="footer-link">Serviços</a></li>
+            <li><a href="orcamentos.html" class="footer-link">Orçamentos</a></li>
+            <li><a href="#" class="footer-link">Cursos</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h5 class="footer-title">Redes Sociais</h5>
           <a href="#" class="social-link"><i class="bi bi-whatsapp"></i> WhatsApp</a>
           <a href="#" class="social-link"><i class="bi bi-facebook"></i> Facebook</a>
           <a href="#" class="social-link"><i class="bi bi-instagram"></i> Instagram</a>
           <a href="#" class="social-link"><i class="bi bi-youtube"></i> YouTube</a>
-          <a href="#" class="social-link"><i class="bi bi-discord"></i> Discord</a>
         </div>
       </div>
-
     </div>
-  </div>
+    <div class="text-center p-3 bg-black">© 2025 Mastercode — Todos os direitos reservados.</div>
+  </footer>
 
-  <div class="text-center p-3 footer-bottom">
-    © 2025 Mastercode — Todos os direitos reservados.
-  </div>
-</footer>
 
 
 
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>

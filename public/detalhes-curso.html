@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detalhes do Curso | MasterCode</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0b0f0c 0%, #1a1f1b 100%);
+      color: #e0e0e0;
+      font-family: 'Consolas', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-container {
+      max-width: 800px;
+      margin: 4rem auto;
+      background: rgba(26,26,26,0.85);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid #00ff66;
+      box-shadow: 0 0 20px rgba(0,255,102,0.2);
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .course-title {
+      color: #00ff66;
+      text-shadow: 0 0 8px #00ff66;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .course-desc { margin-top: 1rem; font-size: 1rem; color: #c0c0c0; }
+    .course-info { margin-top: 1.2rem; font-size: 1rem; color: #b0b0b0; }
+    .course-info strong { color: #ff4fa3; }
+
+    .grade-list { margin-top: 1.2rem; list-style: none; padding: 0; }
+    .grade-list li {
+      background: rgba(0,255,102,0.05);
+      margin: 0.3rem 0;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      border-left: 4px solid #00ff66;
+    }
+
+    .btn-inscrever {
+      background-color: #8a005f;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      transition: 0.3s;
+    }
+    .btn-inscrever:hover {
+      background-color: #ff4fa3;
+      box-shadow: 0 0 10px rgba(255,79,163,0.5);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 1rem;
+      background-color: #0f0f0f;
+      border-top: 2px solid #00ff66;
+      color: #b0b0b0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container course-container">
+    <h1 class="course-title" id="cursoTitulo"></h1>
+    <p class="course-desc" id="cursoDescricao"></p>
+    <p class="course-info"><strong>Duração:</strong> <span id="cursoDuracao"></span></p>
+    <p class="course-info"><strong>Preço:</strong> <span id="cursoPreco"></span></p>
+
+    <h5 class="mt-4">📘 Grade Curricular</h5>
+    <ul class="grade-list" id="cursoGrade"></ul>
+
+    <button class="btn-inscrever" onclick="inscreverCurso()">Inscrever-se</button>
+  </div>
+
+  <footer>
+    <small>&copy; 2025 MasterCode. Todos os direitos reservados.</small>
+  </footer>
+
+  <script>
+    const curso = JSON.parse(localStorage.getItem("cursoSelecionado"));
+
+    if (curso) {
+      document.getElementById("cursoTitulo").textContent = curso.titulo;
+      document.getElementById("cursoDescricao").textContent = curso.descricao;
+      document.getElementById("cursoDuracao").textContent = curso.duracao;
+      document.getElementById("cursoPreco").textContent = curso.preco;
+      document.getElementById("cursoGrade").innerHTML = curso.grade.map(item => `<li>${item}</li>`).join('');
+    } else {
+      window.location.href = "cursos.html";
+    }
+
+    function inscreverCurso() {
+      alert(`Você se inscreveu no curso: ${curso.titulo}`);
+      // Aqui pode futuramente salvar no localStorage ou enviar pro backend
+    }
+  </script>
+</body>
+</html>
